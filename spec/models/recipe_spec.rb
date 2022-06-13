@@ -5,9 +5,10 @@ require 'rails_helper'
 RSpec.describe Recipe, type: :model do
   describe '#search' do
     before do
-      Recipe.create(name: '雞蛋糕')
-      Recipe.create(name: '蛋炒飯')
-      Recipe.create(name: '蚵仔煎')
+      user = User.create!(email: "abc123@gmail.com", password: "123456")
+      user.recipes.create!(name: '雞蛋糕')
+      user.recipes.create!(name: '蛋炒飯')
+      user.recipes.create!(name: '蚵仔煎')
     end
 
     context 'when search recipes by 蛋' do
