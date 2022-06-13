@@ -18,6 +18,16 @@ ActiveRecord::Schema.define(version: 2022_06_13_063459) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "recipe_and_material_records", force: :cascade do |t|
+    t.integer "recipe_id", null: false
+    t.integer "material_id", null: false
+    t.float "quantity"
+    t.string "format"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["material_id"], name: "index_recipe_and_material_records_on_material_id"
+    t.index ["recipe_id"], name: "index_recipe_and_material_records_on_recipe_id"
+  end
 
   create_table "recipes", force: :cascade do |t|
     t.string "name"
@@ -39,4 +49,6 @@ ActiveRecord::Schema.define(version: 2022_06_13_063459) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "recipe_and_material_records", "materials"
+  add_foreign_key "recipe_and_material_records", "recipes"
 end
