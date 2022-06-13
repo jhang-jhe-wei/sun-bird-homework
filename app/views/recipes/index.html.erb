@@ -1,6 +1,8 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Recipes</h1>
+<%= form_tag recipes_path, method: 'get' do %>
+  <!-- 將使用者輸入的文字打包成 params[:search] 參數-->
+  <%= text_field_tag :search, params[:search], placeholder: '搜尋' %>
+<% end %>
 
 <table>
   <thead>
