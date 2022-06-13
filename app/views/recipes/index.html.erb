@@ -1,6 +1,5 @@
 <h1>Recipes</h1>
 <%= form_tag recipes_path, method: 'get' do %>
-  <!-- 將使用者輸入的文字打包成 params[:search] 參數-->
   <%= text_field_tag :search, params[:search], placeholder: '搜尋' %>
 <% end %>
 
@@ -19,8 +18,10 @@
         <td><%= recipe.name %></td>
         <td><%= recipe.remark %></td>
         <td><%= link_to 'Show', recipe %></td>
-        <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
-        <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if recipe.user.id == current_user.id %>
+          <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
+          <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

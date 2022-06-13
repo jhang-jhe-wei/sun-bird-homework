@@ -26,6 +26,10 @@
     <%= form.text_field :remark %>
   </div>
 
+  <% if recipe.persisted? %>
+    <%= link_to '新增材料', new_recipe_recipe_and_material_record_path(recipe.id) %>
+  <% end%>
+
   <div class="actions">
     <%= form.submit %>
   </div>

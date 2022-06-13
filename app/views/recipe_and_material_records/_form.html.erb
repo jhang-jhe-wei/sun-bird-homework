@@ -1,0 +1,46 @@
+<%= form_with(model: recipe_and_material_record, url: [recipe, recipe_and_material_record], local: true) do |form| %>
+  <p>新增材料於 <%= recipe.name %></p>
+
+  <div>
+    <select style="width: 200px" id="materials_select" name="recipe_and_material_record[material_id]">
+      <%# <%= first_3_materials_options %>
+    </select>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :quantity, '數量' %>
+    <%= form.number_field :quantity, required: true %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :format, '單位' %>
+    <%= form.text_field :format, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<script>
+$('#materials_select').select2({
+      ajax: {
+        url: '<%= materials_path %>',
+        dataType: 'json',
+        delay: 250,
+        data: function (params) {
+          var query = {
+            search: params.term
+          }
+          // Query parameters will be ?search=[term]&type=public
+          return query;
+        },
+        processResults: function (data) {
+          return data;
+        },
+      },
+      placeholder: '搜尋材料名稱',
+      closeOnSelect: true,
+      allowClear: true
+  });
+</script>

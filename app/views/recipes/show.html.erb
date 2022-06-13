@@ -1,19 +1,42 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @recipe.name %>
+<strong>Name:</strong>
+<%= @recipe.name %>
 </p>
 
 <p>
-  <strong>description:</strong>
-  <%= @recipe.description %>
+<strong>description:</strong>
+<%= @recipe.description %>
 </p>
 
 <p>
-  <strong>Remark:</strong>
-  <%= @recipe.remark %>
+<strong>Remark:</strong>
+<%= @recipe.remark %>
 </p>
 
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<table>
+  <thead>
+    <tr>
+      <th>材料名稱</th>
+      <th>數量</th>
+      <th>單位</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @recipe.recipe_and_material_records.each do |record| %>
+      <tr>
+        <td><%= record.material.name %></td>
+        <td><%= record.quantity %></td>
+        <td><%= record.format %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @recipe.user.id == current_user.id %>
+  <%= link_to 'Edit', edit_recipe_path(@recipe) %>
+<% end %>
+|
 <%= link_to 'Back', recipes_path %>
