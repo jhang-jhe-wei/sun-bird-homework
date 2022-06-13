@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_13_062632) do
+ActiveRecord::Schema.define(version: 2022_06_13_062823) do
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "name"
+    t.string "remark"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
