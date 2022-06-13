@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateRecipeAndMaterialRecords < ActiveRecord::Migration[6.1]
   def change
     create_table :recipe_and_material_records do |t|

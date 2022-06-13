@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RecipeAndMaterialRecordsController < ApplicationController
   before_action :set_recipe, only: %i[new create]
   before_action :set_recipe_and_material_record, only: :destroy
